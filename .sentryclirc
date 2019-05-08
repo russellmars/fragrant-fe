@@ -1,0 +1,7 @@
+[auth]
+token=497313aa29d74bf3880094ee53150a156ef7dc49d011413babe78c169a4926b2
+
+[defaults]
+url = https://sentry.io/
+org = russellmars
+project = fragrant-fe
