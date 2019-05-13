@@ -29,8 +29,15 @@ npm run test
 npm run lint
 ```
 
-### sentry
+### lint config
+eslint 使用了 prettier 的配置
+vscode 对.vue文件的支持用Vetur插件
+按照prettier插件
+在Vetur插件里将格式化相关的最好都设置成prettier
+
+### [sentry](https://docs.sentry.io/platforms/javascript/vue/)
 #### npm install
+
 ``` js
 import Vue from 'vue'
 import * as Sentry from '@sentry/browser';
