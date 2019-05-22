@@ -1,5 +1,6 @@
 import axios from 'axios'
-import axiosRetry from 'axios-retry'
+// import axiosRetry from 'axios-retry'
+// import configureAxiosRetry from './configureAxiosRetry'
 
 // 失败的请求
 const errorResponse = {
@@ -27,6 +28,7 @@ const getBaseRequestConfig = function(presetOptions) {
  */
 const requestSuccessHandler = function(config) {
   // axios 默认会根据 data 的类型转换 data 以及设置header
+  // config = configureAxiosRetry(config)
   return config
 }
 
@@ -59,13 +61,12 @@ const responseErrorHandler = function(error) {
  */
 export default function(presetOptions) {
   const req = axios.create(getBaseRequestConfig(presetOptions))
-  // axiosRetry 会根据响应的状态码来确定是否重试
-  // axiosRetry 目前还有一个无限添加 baseURL 的 bug：https://github.com/softonic/axios-retry/issues/67
-  axiosRetry(req, {
-    retries: 3, // 重试次数
-    retryDelay: axiosRetry.exponentialDelay, // 重试
-    shouldResetTimeout: true
-  })
+  // axiosRetry(req, {
+  //   retries: 3, // 重试次数
+  //   retryDelay: axiosRetry.exponentialDelay, // 重试
+  //   shouldResetTimeout: true,
+  //   retryCondition: () => true
+  // })
   // Add a request interceptor
   req.interceptors.request.use(requestSuccessHandler, requestErrorHandler)
 
