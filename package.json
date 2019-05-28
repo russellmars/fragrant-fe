@@ -15,9 +15,11 @@
     "axios-retry": "^3.1.2",
     "core-js": "^2.6.5",
     "dayjs": "^1.8.13",
+    "js-cookie": "^2.2.0",
     "query-string": "^5.1.1",
     "store2": "^2.7.1",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.11.2",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
   },
@@ -62,8 +64,11 @@
     }
   },
   "browserslist": [
-    "> 1%",
-    "last 100 versions"
+    "> 0.2%",
+    "last 10 versions",
+    "not dead",
+    "android > 4",
+    "ios > 8"
   ],
   "gitHooks": {
     "pre-commit": "lint-staged"
