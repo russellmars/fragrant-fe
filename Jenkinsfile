@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'node:10' 
-      args '-p 3000:3000' 
+      args '-p 3000:3000 -p 9102:9102' 
     }
   }
 
@@ -13,19 +13,9 @@ pipeline {
 
       }
     }
-    // stage('Test') {
-    //   steps {
-    //     echo 'Testing..'
-    //   }
-    // }
-    stage('Deploy for integrated test environment') {
-      when {
-        branch 'test'
-      }
+    stage('Test') {
       steps {
-        sh './jenkins/scripts/deliver-for-development.sh'
-        input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        sh './jenkins/scripts/kill.sh'
+        sh './jenkins/test.sh'
       }
     }
     stage('Deploy for production environment') {
@@ -33,7 +23,7 @@ pipeline {
         branch 'master'
       }
       steps {
-        sh './jenkins/scripts/deploy-for-production.sh'
+        sh './jenkins/deploy-for-production.sh'
         input message: 'Finished using the web site? (Click "Proceed" to continue)'
         sh './jenkins/scripts/kill.sh'
       }
