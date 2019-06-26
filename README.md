@@ -1,6 +1,7 @@
 # fragrant-fe
 
 ## Project setup
+
 ``` bash
 npm install
 ```
@@ -36,6 +37,7 @@ vscode 对.vue文件的支持用Vetur插件
 在Vetur插件里将格式化相关的最好都设置成prettier
 
 ### [sentry](https://docs.sentry.io/platforms/javascript/vue/)
+
 #### npm install
 
 ``` js
@@ -76,5 +78,7 @@ Sentry.init({
 </script>
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Reference
+
++ [Vue-cli](https://cli.vuejs.org/config/).
++ [Vue i18n](https://kazupon.github.io/vue-i18n/zh/introduction.html)
