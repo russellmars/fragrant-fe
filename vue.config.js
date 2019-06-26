@@ -12,8 +12,8 @@ process.env.VUE_APP_RELEASE = `${pkg.name}@${pkg.version}`
 console.log(colors.green(`代码环境 === ${process.env.VUE_APP_ENV}\r\n`))
 
 module.exports = {
-  publicPath: production ? 'fragrant-fe' : '/',
-  outputDir: 'dist/fragrant-fe',
+  publicPath: '/',
+  outputDir: 'dist',
   productionSourceMap: true,
   devServer: {
     port: 9102,
