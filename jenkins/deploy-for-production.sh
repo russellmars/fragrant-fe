@@ -28,12 +28,12 @@ echo 'is followed by another command that retrieves the process ID (PID) value'
 echo 'of the previously run process (i.e. "serve") and writes this value to'
 echo 'the file ".pidfile".'
 set -x
-./node_modules/serve/bin/serve.js -c 0 -s build -l 9102 &
+./node_modules/serve/bin/serve.js -c 0 -s dist -l 9102 &
 sleep 1
 echo $! > .pidfile
 set +x
 
 echo 'Now...'
-echo 'Visit http://localhost:5000 to see your Node.js/React application in action.'
-echo '(This is why you specified the "args ''-p 5000:5000''" parameter when you'
+echo 'Visit http://localhost:9102 to see your Node.js/React application in action.'
+echo '(This is why you specified the "args ''-p 9102:9102''" parameter when you'
 echo 'created your initial Pipeline as a Jenkinsfile.)'
