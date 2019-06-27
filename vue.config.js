@@ -6,7 +6,7 @@ const production = process.env.NODE_ENV === 'production'
 
 process.env.VUE_APP_VERSION = pkg.version
 process.env.VUE_APP_NAME = pkg.name
-process.env.VUE_APP_ENV = require('./code.env')
+process.env.VUE_APP_ENV = require('./config/code.env')
 process.env.VUE_APP_RELEASE = `${pkg.name}@${pkg.version}`
 
 console.log(colors.green(`代码环境 === ${process.env.VUE_APP_ENV}\r\n`))
@@ -17,7 +17,7 @@ module.exports = {
   productionSourceMap: true,
   devServer: {
     port: 9102,
-    proxy: require('./proxy.config')
+    proxy: require('./config/proxy.config')
   },
   configureWebpack: config => {
     if (production) {

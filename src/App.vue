@@ -18,9 +18,12 @@
 export default {
   methods: {
     doError1() {
+      console.log(1)
       console.log().log()
+      console.log(2)
     },
     doError2() {
+      console.log(3)
       throw new Error('随便写的东西测试错误')
     }
   }
