@@ -1,0 +1,28 @@
+language: node_js
+node_js: stable
+
+# Travis-CI Caching
+cache:
+  directories:
+    - node_modules
+
+# S: Build Lifecycle
+install:
+  - npm install
+
+before_script:
+
+script:
+  - npm run build
+
+deploy:
+  local-dir: dist
+  email: russellmars@sina.com
+  name: russellmars
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: false
+  target-branch: gh-pages
+  on:
+    branch: master
