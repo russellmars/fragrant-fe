@@ -16,11 +16,13 @@ export default {
     HelloWorld
   },
   mounted() {
-    api.account
-      .quickLogin({
-        data: {
-          user: 'mars',
-          pass: 'qq123456'
+    api.topic
+      .getTopics({
+        params: {
+          page: 1,
+          tab: 'good',
+          limit: 10,
+          mdrender: true
         }
       })
       .then(result => {
