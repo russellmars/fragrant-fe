@@ -15,25 +15,27 @@ export default {
   components: {
     HelloWorld
   },
-  mounted() {
-    api.topic
-      .getTopics({
-        params: {
-          page: 1,
-          tab: 'good',
-          limit: 10,
-          mdrender: true
-        }
-      })
-      .then(result => {
+  methods: {
+    async testAPI() {
+      try {
+        const result = await api.topic.getTopics({
+          params: {
+            page: 1,
+            tab: 'good',
+            limit: 10,
+            mdrender: true
+          }
+        })
         console.log('result === ', result)
-      })
-      .catch(err => {
-        console.log('err === ', err)
-      })
-      .finally(() => {
+      } catch (error) {
+        console.log('err === ', error)
+      } finally {
         console.log('finally')
-      })
+      }
+    }
+  },
+  mounted() {
+    this.testAPI()
   }
 }
 </script>

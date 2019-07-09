@@ -1,16 +1,10 @@
 import axios from 'axios'
+import { Notify } from 'vant'
 // import axiosRetry from 'axios-retry'
 // import configureAxiosRetry from './configureAxiosRetry'
 
-// 失败的请求
-const errorResponse = {
-  responseCode: 9999,
-  responseMsg: '网络连接超时',
-  isSuccess: false
-}
-
 const defaultOptions = {
-  timeout: 10000
+  timeout: 30000
 }
 
 /**
@@ -33,26 +27,45 @@ const requestSuccessHandler = function(config) {
 }
 
 const requestErrorHandler = function(error) {
-  console.log('requestError === ', error)
-  return Promise.resolve(errorResponse)
+  return Promise.reject(error)
 }
 
 const responseSuccessHandler = function(response) {
+  const { data, config } = response
+  if (!data.success) {
+    const { success, error_msg: message } = data
+    return responseError(config, {
+      success,
+      message
+    })
+  }
   return response.data
 }
 
 const responseErrorHandler = function(error) {
-  if (error.response) {
+  const { response, config } = error
+  let message = '网络错误'
+  if (response) {
     // 请求已经发出去，服务器返回错误
-    console.log(error.response)
-  } else {
-    // 请求没有发出去，网络错误等
-    console.log('Error', error.message)
+    const data = response.data
+    if (data && data.error_msg) {
+      message = data.error_msg
+    }
+    // } else {
+    //   // 请求没有发出去，网络错误等
+    //   message = error.message
   }
-  console.log(error.config)
+  return responseError(config, {
+    success: false,
+    message
+  })
+}
 
-  // return Promise.reject(error)
-  return Promise.resolve(errorResponse)
+function responseError(config, error) {
+  if (config.catchError !== false) {
+    Notify(error.message)
+  }
+  return Promise.reject(error)
 }
 
 /**
