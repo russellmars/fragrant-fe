@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/i18n/lang/zh.js"],"names":["__webpack_require__","r","__webpack_exports__","greet"],"mappings":"yGAAAA,EAAAC,EAAAC,GAAeA,EAAA,YACbC,MAAO","file":"js/lang-zh.73828f19.js","sourcesContent":["export default {\n  greet: '你好 {name}'\n}\n"],"sourceRoot":""}
